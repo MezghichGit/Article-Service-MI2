@@ -37,7 +37,7 @@ public class ArticleService {
 		ArticleProvider article_provider = new ArticleProvider();
 		log.info("Get article avec son provider succès depuis Article Service");
 		Article article = articleRepository.findArticleById(articleId);
-		Provider provider = restTemplate.getForObject("http://127.0.0.1:8010/providers/"+article.getProviderId(), Provider.class);
+		Provider provider = restTemplate.getForObject("http://PROVIDER-SERVICE/providers/"+article.getProviderId(), Provider.class);
 		article_provider.setArticle(article);
 		article_provider.setProvider(provider);
 		return article_provider;
@@ -50,7 +50,7 @@ public class ArticleService {
 		articles.forEach(
 				
 				(Article article)->{
-					Provider provider = restTemplate.getForObject("http://127.0.0.1:8010/providers/"+article.getProviderId(), Provider.class);
+					Provider provider = restTemplate.getForObject("http://PROVIDER-SERVICE/providers/"+article.getProviderId(), Provider.class);
 					ArticleProvider article_provider = new ArticleProvider();
 					article_provider.setArticle(article);
 					article_provider.setProvider(provider);
